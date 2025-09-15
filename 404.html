@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | 404 Error</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .home-btn {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(118, 75, 162, 0.3);
+        }
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(118, 75, 162, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="text-center max-w-2xl w-full">
+        <!-- Floating Space Illustration -->
+        <div class="floating mx-auto mb-6 w-64 h-64">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7f6c0c91-4434-4c28-8da7-29a0ec7d7697.png" alt="Lost astronaut cartoon floating in space with confused expression, floating planets and stars in background" />
+        </div>
+
+        <!-- Error Content -->
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text">404</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-2">Whoops! Page Not Found</h2>
+        <p class="text-lg text-gray-600 mb-8">
+            The page you're looking for seems to have drifted off into the digital cosmos.
+            Don't worry, we'll help you navigate back to familiar territory.
+        </p>
+
+        <!-- Home Button -->
+        <a href="index.html" class="home-btn inline-block px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold text-lg">
+            Take Me Home
+        </a>
+
+       
+
+    <!-- Optional Floating Elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1] opacity-10">
+        <!-- Space-themed decorative elements -->
+        <div class="absolute w-4 h-4 rounded-full bg-blue-300" style="top: 20%; left: 10%;"></div>
+        <div class="absolute w-3 h-3 rounded-full bg-purple-300" style="top: 60%; left: 80%;"></div>
+        <div class="absolute w-2 h-2 rounded-full bg-yellow-200" style="top: 30%; left: 65%;"></div>
+        <div class="absolute w-5 h-5 rounded-full bg-red-200" style="top: 70%; left: 30%;"></div>
+    </div>
+
+    <!-- Simple Confetti Effect for Button Click -->
+    <script>
+        document.querySelector('.home-btn').addEventListener('click', function(e) {
+            // Create confetti-like elements
+            for(let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'absolute w-2 h-2 rounded-full';
+                confetti.style.backgroundColor = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'][Math.floor(Math.random() * 5)];
+                confetti.style.left = `${e.clientX}px`;
+                confetti.style.top = `${e.clientY}px`;
+                confetti.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px)`;
+                confetti.style.opacity = '0';
+                
+                document.body.appendChild(confetti);
+                
+                const animation = confetti.animate([
+                    { 
+                        opacity: 1,
+                        transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 150}px) rotate(${Math.random() * 360}deg)` 
+                    },
+                    { opacity: 0 }
+                ], {
+                    duration: 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                animation.onfinish = () => confetti.remove();
+            }
+        });
+    </script>
+</body>
+</html>
+
